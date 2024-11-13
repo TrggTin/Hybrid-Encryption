@@ -96,10 +96,10 @@ def main():
     print("\n")
     print(public_key.decode())
     print("\n")
-    syn_key = generate_synmetric_key(32)
+    syn_key = generate_symmetric_key(32)
     print(syn_key.hex())
     print("\n")
-    enc_syn_key = encrypt_synmetric_key(syn_key, public_key)
+    enc_syn_key = encrypt_symmetric_key(syn_key, public_key)
     print(enc_syn_key.hex())
 
 if __name__ == "__main__":
