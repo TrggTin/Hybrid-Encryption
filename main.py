@@ -14,11 +14,11 @@ def generate_key(bits=2048):
     return private_key, public_key
 
 #Tao khoa doi xung 
-def generate_synmetric_key(bytes):
+def generate_symmetric_key(bytes):
     return get_random_bytes(bytes)
 
 #Ma hoa khoa doi xung 
-def encrypt_synmetric_key(synmetric_key, public_key):
+def encrypt_symmetric_key(synmetric_key, public_key):
     #Nguoi nhan gui Public key
     recipent_key = RSA.import_key(public_key)
 
@@ -26,6 +26,13 @@ def encrypt_synmetric_key(synmetric_key, public_key):
     cipher_rsa = PKCS1_OAEP.new(recipent_key)
     encrypt_synmetric_key = cipher_rsa.encrypt(synmetric_key)
     return encrypt_synmetric_key
+
+def decrypt_symmetric_key(enc_symmetric_key, private_key):
+    """Decrypt symmetric key using RSA private key"""
+    recipient_key = RSA.import_key(private_key)
+    cipher_rsa = PKCS1_OAEP.new(recipient_key)
+    symmetric_key = cipher_rsa.decrypt(enc_symmetric_key)
+    return symmetric_key
 
 #Ma hoa file
 def encrypt_file(input_file, synmetric_key):
