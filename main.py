@@ -90,30 +90,31 @@ def verify_signature(file_data, signed_hash, public_key):
         return False
     
 def main():
-    # Generate receiver's keys
+    # Tao cap khoa cua reiceiver và ghi vao file --> khoa nay do receiver su dung
     private_key, public_key = generate_key()
     with open('receiver_private_key.key', 'wb') as f:
         f.write(private_key)
     with open('receiver_pub_key.pub', 'wb') as f:
         f.write(public_key)
 
-    # Generate sender's keys (for file integrity verification)
+    # Tao cap khoa do sender và ghi vao file --> khoa nay do sender su dung va duoc dung de tao file xac thuc 
     sender_private_key, sender_public_key = generate_key()
     with open('sender_private_key.key', 'wb') as f:
         f.write(sender_private_key)
     with open('sender_pub_key.pub', 'wb') as f:
         f.write(sender_public_key)
 
-    #Key duoc tao ra va neu xuat ra se doc o dang nhi phan --> not readable
-    print(private_key.decode())
-    print("\n")
-    print(public_key.decode())
-    print("\n")
-    syn_key = generate_symmetric_key(32)
-    print(syn_key.hex())
-    print("\n")
-    enc_syn_key = encrypt_symmetric_key(syn_key, public_key)
-    print(enc_syn_key.hex())
+    #Testing lúc code 
+    # #Key duoc tao ra va neu xuat ra se doc o dang nhi phan --> not readable
+    # print(private_key.decode())
+    # print("\n")
+    # print(public_key.decode())
+    # print("\n")
+    # syn_key = generate_symmetric_key(32)
+    # print(syn_key.hex())
+    # print("\n")
+    # enc_syn_key = encrypt_symmetric_key(syn_key, public_key)
+    # print(enc_syn_key.hex())
 
 if __name__ == "__main__":
     main()

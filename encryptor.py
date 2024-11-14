@@ -12,28 +12,28 @@ def main():
     
     args = parser.parse_args()
 
-    # Read receiver's public key
+    # đọc khóa pub của người nhận 
     with open(args.receiver_pub_key, 'rb') as f:
         receiver_public_key = f.read()
 
-    # Generate symmetric key
+    # tạo khóa đối xứng 
     symmetric_key = generate_symmetric_key(32)
 
-    # Encrypt symmetric key with receiver's public key
+    # mã hóa khóa đối xứng với pub key của người nhận --> encrypted sym key 
     encrypted_symmetric_key = encrypt_symmetric_key(symmetric_key, receiver_public_key)
 
-    # Encrypt the file
+    # mã hóa 
     encrypted_data = encrypt_file(args.input_file, symmetric_key)
 
-    # Save encrypted symmetric key
+    # lưu encrypted sym key
     with open(args.output_encrypted_symmetric_key, 'wb') as f:
         f.write(encrypted_symmetric_key)
 
-    # Save encrypted file
+    # lưu encrypted file
     with open(args.output_encrypted_file, 'wb') as f:
         f.write(encrypted_data)
 
-    # If sender's private key is provided, sign the file
+    # xac thuc file thong qua private key cua nguoi gui (neu co)
     if args.sender_private_key and args.output_signature:
         with open(args.sender_private_key, 'rb') as f:
             sender_private_key = f.read()

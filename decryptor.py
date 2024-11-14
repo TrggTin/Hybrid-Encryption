@@ -13,7 +13,7 @@ def main():
     
     args = parser.parse_args()
 
-    # Read receiver's private key
+    # doc khoa pri cua nguoi nhan 
     with open(args.receiver_private_key, 'rb') as f:
         receiver_private_key = f.read()
 
