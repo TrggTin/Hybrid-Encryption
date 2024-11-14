@@ -1,0 +1,5 @@
+This is a sample text file for demonstrating the hybrid encryption system.
+
+The file contains some basic information about the project and can be used to test the encryption and decryption functionality.
+
+Feel free to modify the contents of this file as needed for your demo.
