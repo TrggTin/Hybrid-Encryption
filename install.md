@@ -20,25 +20,6 @@ pip install pycryptodome
 ## Usage
 
 ### 1. Generate Key Pairs
-First, you'll need to generate RSA key pairs. You can use the following Python code:
-
-```python
-from utils import generate_keypair
-
-# Generate receiver's keys
-private_key, public_key = generate_keypair()
-with open('receiver_private_key.key', 'wb') as f:
-    f.write(private_key)
-with open('receiver_pub_key.pub', 'wb') as f:
-    f.write(public_key)
-
-# Generate sender's keys (for file integrity verification)
-sender_private_key, sender_public_key = generate_keypair()
-with open('sender_private_key.key', 'wb') as f:
-    f.write(sender_private_key)
-with open('sender_pub_key.pub', 'wb') as f:
-    f.write(sender_public_key)
-```
 
 ### 2. Encrypt a File
 Basic encryption:

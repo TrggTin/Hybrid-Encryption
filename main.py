@@ -90,7 +90,20 @@ def verify_signature(file_data, signed_hash, public_key):
         return False
     
 def main():
+    # Generate receiver's keys
     private_key, public_key = generate_key()
+    with open('receiver_private_key.key', 'wb') as f:
+        f.write(private_key)
+    with open('receiver_pub_key.pub', 'wb') as f:
+        f.write(public_key)
+
+    # Generate sender's keys (for file integrity verification)
+    sender_private_key, sender_public_key = generate_key()
+    with open('sender_private_key.key', 'wb') as f:
+        f.write(sender_private_key)
+    with open('sender_pub_key.pub', 'wb') as f:
+        f.write(sender_public_key)
+
     #Key duoc tao ra va neu xuat ra se doc o dang nhi phan --> not readable
     print(private_key.decode())
     print("\n")
