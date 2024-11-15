@@ -13,22 +13,17 @@ def main():
     
     args = parser.parse_args()
 
-    # doc khoa pri cua nguoi nhan 
     with open(args.receiver_private_key, 'rb') as f:
         receiver_private_key = f.read()
-
-    # Read encrypted symmetric key
     with open(args.encrypted_key, 'rb') as f:
         encrypted_symmetric_key = f.read()
-
-    # Read encrypted file
     with open(args.input_file, 'rb') as f:
         encrypted_data = f.read()
 
-    # Decrypt symmetric key
+    # giai ma aes
     symmetric_key = decrypt_symmetric_key(encrypted_symmetric_key, receiver_private_key)
 
-    # Decrypt file
+    # giai ma file
     decrypted_data = decrypt_file(encrypted_data, symmetric_key)
 
     # Save decrypted file
