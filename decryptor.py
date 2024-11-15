@@ -30,7 +30,7 @@ def main():
     with open(args.output_decrypted_file, 'wb') as f:
         f.write(decrypted_data)
 
-    # Verify file integrity if sender's public key and signature are provided
+    # xác thực lại file với public key của người gửi
     if args.sender_public_key and args.signature:
         with open(args.sender_public_key, 'rb') as f:
             sender_public_key = f.read()

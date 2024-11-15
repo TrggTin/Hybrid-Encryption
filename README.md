@@ -5,14 +5,7 @@
 - pycryptodome library
 
 ## Installation Steps
-
-1. Create a virtual environment (recommended):
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use: venv\Scripts\activate
-```
-
-2. Install required packages:
+Install required packages:
 ```bash
 pip install pycryptodome
 ```
@@ -20,7 +13,9 @@ pip install pycryptodome
 ## Usage
 
 ### 1. Generate Key Pairs
-
+```bash
+python main.py
+```
 ### 2. Encrypt a File
 Basic encryption:
 ```bash
@@ -42,6 +37,7 @@ Basic decryption:
 ```bash
 python decryptor.py --receiver_private_key=receiver_private_key.key --encrypted_key=encrypted_key.key --input_file=encrypted_file.txt --output_decrypted_file=decrypted_file.txt
 ```
+
 With picture:
 ```bash
 python decryptor.py --receiver_private_key=receiver_private_key.key --encrypted_key=encrypted_key.key --input_file=encrypted_file.enc --output_decrypted_file=decrypted_file.jpg
@@ -57,7 +53,6 @@ The system supports all file types as it operates on binary data. Tested file ty
 - Text files (.txt)
 - Image files (.png, .jpg, .jpeg)
 - PDF files (.pdf)
-- And more...
 
 ## Implementation Details
 - RSA key size: 2048 bits
@@ -65,3 +60,4 @@ The system supports all file types as it operates on binary data. Tested file ty
 - AES mode: CBC with PKCS7 padding
 - Hash algorithm: SHA-256
 - RSA padding: PKCS1_OAEP
+- Signature padding: PKCS#1_v1.5

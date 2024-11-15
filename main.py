@@ -2,6 +2,8 @@
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
+from Crypto.Signature import pkcs1_15
+from Crypto.Hash import SHA256
 from Crypto.Util.Padding import pad, unpad
 import hashlib
 from base64 import b64encode, b64decode
@@ -69,24 +71,24 @@ def decrypt_file(encrypted_data, symmetric_key):
 
 def calculate_file_hash(file_data):
     #Tao fingerprint cho file qua ham bam sha256
-    return hashlib.sha256(file_data).digest()
+    return SHA256.new(file_data)
 
 def sign_hash(file_hash, private_key):
     #Xac dinh ki ten fingerprint = private key cua nguoi gui
     signer_key = RSA.import_key(private_key)
-    cipher_rsa = PKCS1_OAEP.new(signer_key)
-    signed_hash = cipher_rsa.encrypt(file_hash)
-    return signed_hash
+    signer = pkcs1_15.new(signer_key)
+    signature = signer.sign(file_hash)
+    return signature
 
 def verify_signature(file_data, signed_hash, public_key):
     #Xac thuc lai file fingerprint = public key cua nguoi nhan 
     calculated_hash = calculate_file_hash(file_data)
-    signer_key = RSA.import_key(public_key)
-    cipher_rsa = PKCS1_OAEP.new(signer_key)
+    verifier_key = RSA.import_key(public_key)
+    verifier = pkcs1_15.new(verifier_key)
     try:
-        decrypted_hash = cipher_rsa.decrypt(signed_hash)
-        return decrypted_hash == calculated_hash
-    except:
+        verifier.verify(calculated_hash, signed_hash)
+        return True
+    except (ValueError, TypeError):
         return False
     
 def main():
