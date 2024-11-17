@@ -15,7 +15,7 @@ python decryptor.py --receiver_private_key=receiver_private_key.key --encrypted_
 ```bash
 python encryptor.py --receiver_pub_key=receiver_pub_key.pub --input_file=lab00-encryption.pdf --output_encrypted_file=pdf.enc --output_encrypted_symmetric_key=encrypted_key.key
 
-python decryptor.py --receiver_private_key=receiver_private_key.key --encrypted_key=encrypted_key.key --input_file=pdf.enc --output_decrypted_file=decrypted_pdf.jpg
+python decryptor.py --receiver_private_key=receiver_private_key.key --encrypted_key=encrypted_key.key --input_file=pdf.enc --output_decrypted_file=decrypted_pdf.pdf
 ```
 
 ```bash
